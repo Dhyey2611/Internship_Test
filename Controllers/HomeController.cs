@@ -1,31 +1,83 @@
-using System.Diagnostics;
+// using Microsoft.AspNetCore.Mvc;
+// using Internship_Test.Data;
+// using Internship_Test.ViewModel;
+// using System.Linq;
+
+// namespace Internship_Test.Controllers
+// {
+//     public class HomeController : Controller
+//     {
+//         private readonly DatabaseContext _context;
+
+//         public HomeController(DatabaseContext context)
+//         {
+//             _context = context;
+//         }
+
+//         public IActionResult Index(string search)
+//         {
+//              var query = _context.Menu_Items.AsQueryable();
+//               if (!string.IsNullOrEmpty(search))
+//                 {
+//               query = query.Where(m => m.Item_Name.ToLower().Contains(search.ToLower()));
+//                 }
+//             var menuItems = _context.Menu_Items
+//                 .Select(m => new MeniItemsViewModel
+//                 {
+//                     ItemName = m.Item_Name,
+//                     Price = m.Item_Price
+//                 })
+//                 .ToList();
+
+//             return View(menuItems);
+//         }
+//         [HttpGet]
+//         public IActionResult GetUserPopupInfo(int userId)
+//         {
+//         var viewModel = _context.GetUserPopupInfo(userId);
+//         if (viewModel == null) return Json(null);
+//         return Json(viewModel);  // ✅ no rewrite
+//         }
+//     }
+// }
 using Microsoft.AspNetCore.Mvc;
-using Internship_Test.Models;
-
-namespace Internship_Test.Controllers;
-
-public class HomeController : Controller
+using Internship_Test.ViewModel;
+using Internship_Test.Services;
+namespace Internship_Test.Controllers
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    public class HomeController : Controller
     {
-        _logger = logger;
-    }
+        private readonly IMenuService _menuService;
 
-    public IActionResult Index()
-    {
-        return View();
-    }
+        public HomeController(IMenuService menuService)
+        {
+            _menuService = menuService;
+        }
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+        public IActionResult Index(string search)
+        {
+            var allItems = _menuService.GetMenu();
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            if (!string.IsNullOrEmpty(search))
+            {
+                allItems = allItems.Where(m => m.Item_Name.ToLower().Contains(search.ToLower())).ToList();
+            }
+
+            var menuItems = allItems.Select(m => new MeniItemsViewModel
+            {
+                ItemName = m.Item_Name,
+                Price = m.Item_Price
+            }).ToList();
+
+            return View(menuItems);
+        }
+
+        [HttpGet]
+        public IActionResult GetUserPopupInfo(int userId)
+        {
+            var viewModel = _menuService.GetUserPopupInfo(userId);
+            if (viewModel == null) return Json(null);
+            return Json(viewModel);
+        }
     }
 }

@@ -18,5 +18,7 @@ namespace Internship_Test.Data
         public DbSet <App_Update> App_Updates {get; set;}  
         public DbSet <Benefit> Benefits {get; set;}
         public DbSet<Admin> Admins {get; set;}
+        public DbSet<User>Users {get; set;}
+        public DbSet<Menu_Items> Menu_Items {get ; set;}
     }
 }

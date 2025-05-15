@@ -5,12 +5,24 @@
       "PackagePath": "staticwebassets\\Internship_Test.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\BAPS\\Downloads\\Tatva_Internship_Assesment\\Internship_Test\\wwwroot\\css\\Index.css",
+      "PackagePath": "staticwebassets\\css\\Index.css"
+    },
+    {
       "Id": "C:\\Users\\BAPS\\Downloads\\Tatva_Internship_Assesment\\Internship_Test\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
       "Id": "C:\\Users\\BAPS\\Downloads\\Tatva_Internship_Assesment\\Internship_Test\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\BAPS\\Downloads\\Tatva_Internship_Assesment\\Internship_Test\\wwwroot\\images\\Lamo_Icon.png",
+      "PackagePath": "staticwebassets\\images\\Lamo_Icon.png"
+    },
+    {
+      "Id": "C:\\Users\\BAPS\\Downloads\\Tatva_Internship_Assesment\\Internship_Test\\wwwroot\\js\\PopUp.js",
+      "PackagePath": "staticwebassets\\js\\PopUp.js"
     },
     {
       "Id": "C:\\Users\\BAPS\\Downloads\\Tatva_Internship_Assesment\\Internship_Test\\wwwroot\\js\\site.js",
